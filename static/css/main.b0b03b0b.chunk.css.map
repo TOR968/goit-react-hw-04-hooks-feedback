@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/feedback/feedback.css"],"names":[],"mappings":"AAAA,GACE,eACF,CAEA,OACE,WACF,CACA,GACE,oBAAqB,CACrB,kBACF","file":"main.b0b03b0b.chunk.css","sourcesContent":["h2 {\r\n  margin-left: 5px;\r\n}\r\n\r\nbutton {\r\n  margin: 10px;\r\n}\r\nli {\r\n  list-style-type: none;\r\n  margin-bottom: 10px;\r\n}\r\n"]}
