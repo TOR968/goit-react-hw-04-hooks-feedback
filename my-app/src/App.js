@@ -9,40 +9,50 @@ function App() {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const valueKeys = { good, neutral, bad };
 
-  const changeValueState = e => {
-    const name = e.target.name;
-    this.setState(prevState => {
-      return { [name]: prevState[name] + 1 };
-    });
+  const changeValueState = event => {
+    const name = event.target.name;
+    switch (name) {
+      case 'good':
+        setGood(prevGood => prevGood + 1);
+        break;
+      case 'neutral':
+        setNeutral(prevNeutral => prevNeutral + 1);
+        break;
+      case 'bad':
+        setBad(prevBad => prevBad + 1);
+        break;
+      default:
+        break;
+    }
   };
+
   const countTotalFeedback = () => {
-    return Object.values(this.state).reduce((a, b) => a + b, 0);
+    return good + neutral + bad;
   };
+
   const countPositiveFeedbackPercentage = () => {
-    return Math.round((this.state.good * 100) / this.countTotalFeedback());
+    return Math.round((good * 100) / countTotalFeedback());
   };
-  // render() {
-  //   const { good, neutral, bad } = this.state;
+
   return (
     <>
       <Section title="Please leave feedback">
         <FeedbackOptions
-          options={this.state}
+          options={{ good, neutral, bad }}
           onLeaveFeedback={changeValueState}
         ></FeedbackOptions>
       </Section>
       <Section title="Statistics">
-        {this.countTotalFeedback() === 0 ? (
+        {countTotalFeedback() === 0 ? (
           <Notification message="No feedback given"></Notification>
         ) : (
           <Statistics
             good={good}
             neutral={neutral}
             bad={bad}
-            total={countTotalFeedback}
-            positivePercentage={countPositiveFeedbackPercentage}
+            total={countTotalFeedback()}
+            positivePercentage={countPositiveFeedbackPercentage()}
           ></Statistics>
         )}
       </Section>
